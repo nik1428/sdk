@@ -289,8 +289,6 @@ func (r *Client) SetRawDashboard(ctx context.Context, raw []byte) (StatusMessage
 	if err = json.Unmarshal(raw, &plain); err != nil {
 		return StatusMessage{}, err
 	}
-	// TODO(axel) fragile place, refactor it
-	plain["id"] = 0
 	raw, _ = json.Marshal(plain)
 	buf.WriteString(`{"dashboard":`)
 	buf.Write(raw)
